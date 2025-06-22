@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
+const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 const { initSocket } = require('./socket/setup');
@@ -16,6 +17,17 @@ initSocket(io);
 
 app.use(cors());
 app.use(express.json());
+
+// --- Security Middleware ---
+// Apply a global rate limiter to all requests to prevent abuse
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+    message: 'Too many requests from this IP, please try again after 15 minutes',
+});
+app.use('/api', limiter); // Apply the limiter only to API routes
 
 app.get('/', (req, res) => res.send('API is running 🚨'));
 
