@@ -98,7 +98,7 @@ function App() {
 
   return (
     <div className="App">
-      <header>
+      <header className='app-header'>
         <h1>Disaster Response Platform</h1>
       </header>
       <main id="root-container">
@@ -126,7 +126,7 @@ function App() {
         <div className="column">
           <h2>📢 Real-time Social Media Alerts</h2>
           <div className="status">
-            Socket Status: {isConnected ? 'Connected' : 'Disconnected'}
+            Socket Status: {isConnected ? <span>Connected</span> : <span>Disconnected</span>}
           </div>
           <div id="alerts" className="scroll-box">
             {alerts.length === 0 && <p>Waiting for alerts...</p>}
@@ -140,7 +140,7 @@ function App() {
         </div>
         <div className="column">
           <h2>🚨 Report a New Disaster</h2>
-          <form id="disasterForm" onSubmit={handleSubmit}>
+          <form id="disasterForm" className="disaster-form" onSubmit={handleSubmit}>
             <input
               type="text"
               id="title"
