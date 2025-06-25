@@ -3,6 +3,7 @@
 A full-stack application designed to coordinate and manage responses to disaster events in real-time. This platform uses a Node.js/Express backend with a Supabase database and a React frontend. It leverages AI for data enrichment and WebSockets for live updates.
 
 ---
+![Editor _ Mermaid Chart-2025-06-25-183224](https://github.com/user-attachments/assets/83135ec1-05ce-457c-a201-0fecd4e2b565)
 
 ### Live Application Links
 
